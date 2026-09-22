@@ -1,0 +1,65 @@
+# Claude Code
+.claude/
+
+# Virtual Environment
+.venv/
+venv/
+env/
+
+# Documentation and local notes
+.docs/
+docs/
+
+# Project files
+CLAUDE.md
+
+# Parsed outputs
+parsed_output/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Test and coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Other
+*.log
+*.bak
+.tmp/
