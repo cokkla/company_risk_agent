@@ -13,6 +13,6 @@ def parse_xlsx(path: Path) -> ParsedResult:
     for sheet in wb.worksheets:
         lines = [f"## {sheet.title}"]
         for row in sheet.iter_rows(values_only=True):
-            lines.append(" | ".join("" if v is None else str(v) for v in row))
+            lines.append(" | ".join("" if v is None else str(v).replace("|", "\\|") for v in row))
         sections.append("\n".join(lines))
     return ParsedResult(markdown="\n\n".join(sections), status="success", parser_used="openpyxl")
