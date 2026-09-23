@@ -1,11 +1,14 @@
 import zipfile
 from pathlib import Path
 
+import olefile
+
 SIGNATURES: dict[str, bytes] = {
     "pdf": b"%PDF",
     "png": b"\x89PNG\r\n\x1a\n",
     "jpg": b"\xff\xd8\xff",
     "zip_based": b"PK\x03\x04",
+    "ole2": b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1",
 }
 
 TEXT_EXTENSIONS = {".txt", ".md"}
@@ -24,6 +27,13 @@ def _sniff_zip_based(path: Path) -> str | None:
     return None
 
 
+def _sniff_ole2(path: Path) -> str | None:
+    with olefile.OleFileIO(path) as ole:
+        if ole.exists("WordDocument"):
+            return "doc"
+    return None
+
+
 def _sniff_by_signature(path: Path) -> str | None:
     with open(path, "rb") as f:
         head = f.read(8)
@@ -31,6 +41,8 @@ def _sniff_by_signature(path: Path) -> str | None:
         if head.startswith(sig):
             if name == "zip_based":
                 return _sniff_zip_based(path)
+            if name == "ole2":
+                return _sniff_ole2(path)
             return name
     return None
 

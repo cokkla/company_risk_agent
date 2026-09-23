@@ -18,5 +18,5 @@ def parse_file(file_id: str, source: FileSource) -> ParsedResult:
     else:
         result = PARSERS[detected_type](path)
 
-    write_output(path.name, detected_type, result)
+    write_output(file_id, path.name, detected_type, result)
     return result

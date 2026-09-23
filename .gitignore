@@ -16,6 +16,9 @@ CLAUDE.md
 # Parsed outputs
 parsed_output/
 
+# Local test fixtures (business sample files, not part of the codebase)
+media/
+
 # Python
 __pycache__/
 *.py[cod]
